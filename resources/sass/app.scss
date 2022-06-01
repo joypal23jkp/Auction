@@ -1,0 +1,84 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+@import "../css/style";
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+
+.hero_section_slider {
+    background: #3b4a6b;
+    border-radius: 0 0 0 10rem;
+    height: 90vh;
+    .carousel__item__wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        h1{
+            font-size: 54px;
+            font-weight: bold;
+        }
+        p {
+            font-size: 18px;
+        }
+        a {
+            background: #ffc624;
+            padding: 12px 20px;
+            border-radius: 10px;
+            color: black;
+        }
+    }
+
+    img{
+        width: 80%;
+    }
+}
+
+.center__x__y {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product_bit_button {
+    animation: heartbeat 5s infinite;
+}
+
+@keyframes heartbeat
+{
+    0%
+    {
+        transform: scale( .9 );
+    }
+    20%
+    {
+        transform: scale( 1 );
+    }
+    40%
+    {
+        transform: scale( .9 );
+    }
+    60%
+    {
+        transform: scale( 1 );
+    }
+    80%
+    {
+        transform: scale( .9 );
+    }
+    100%
+    {
+        transform: scale( .9 );
+    }
+}
+
