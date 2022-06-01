@@ -74,28 +74,7 @@
                          @endif
                  </div>
              </div>
-
          </div>
-         <hr>
-         <div class="comment__section my-4 w-50 mx-auto">
-             <form method="POST" action="{{ route('product-comment', ['id' => $product->id]) }}">
-                 @csrf
-                 <div class="form-floating">
-                     <textarea name="details" class="form-control bg-transparent text-white" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
-                     <label for="floatingTextarea">Comments</label>
-                 </div>
-                 <button type="submit" class="btn btn-primary w-25 my-4">Submit</button>
-             </form>
-         </div>
-         <hr>
-         @foreach($product->comments as $key =>$comment)
-            <div class="comment__view my-4 w-50 mx-auto">
-                <small>{{ $key+1 .'. '. $comment->comment_text }}</small>
-                <hr>
-            </div>
-
-         @endforeach
-
      </div>
  </section>
 

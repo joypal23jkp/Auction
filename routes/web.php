@@ -18,7 +18,6 @@ Route::Post('/product/update/{id}', [ProductController::class, 'update'])->middl
 Route::get('/product/{id}', [ProductController::class, 'showProduct'])->name('show-product');
 Route::post('bit/product', [ProductController::class, 'bit'])->middleware('auth')->name('bit-product');
 Route::get('user/product', [ProductController::class, 'showUserProduct'])->middleware('auth')->name('user-product');
-Route::post('user/product/comment/{id}', [ProductController::class, 'comment'])->middleware('auth')->name('product-comment');
 
 Route::get('user/notification', [UserController::class, 'showUserNotification'])->middleware('auth')->name('notification');
 Route::get('user/notification/check/{id}', [UserController::class, 'check'])->middleware('auth')->name('notification-check');
