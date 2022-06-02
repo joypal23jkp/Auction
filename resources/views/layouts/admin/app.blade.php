@@ -36,7 +36,7 @@
         <header class="header_section">
             <div class="container">
                 <nav class="navbar navbar-expand-lg custom_nav-container">
-                    <a class="navbar-brand"  href="{{ url('/') }}">
+                    <a class="navbar-brand"  href="{{ url('/admin') }}">
                         <span>
                           {{ config('app.name'.' Admin', 'Auction Admin') }}
                         </span>
@@ -127,40 +127,37 @@
                     {{ session()->get('success') }}
                 </div>
             @endif
-                @if(\Illuminate\Support\Facades\Auth::check())
-                    @php
-                        $user = \Illuminate\Support\Facades\Auth::user() ?? null;
-                    @endphp
-                 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                <p class="text-center" style=" font-size: 14px; font-weight: bold; text-align: center;">
-{{--                                    {{ $user ? $user->name: '' }}--}}
-                                </p>
+                @auth
+                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <p class="text-center" style=" font-size: 14px; font-weight: bold; text-align: center;">
+                                        {{ \Illuminate\Support\Facades\Auth::user()->name }}
+                                    </p>
 
-{{--                                <p class="text-center" style=" font-size: 14px; font-weight: bold; text-align: center;">--}}
-{{--                                    {{ \Illuminate\Support\Facades\Auth::user()->email }}--}}
-{{--                                </p>--}}
+                                    <p class="text-center" style=" font-size: 14px; font-weight: bold; text-align: center;">
+                                        {{ \Illuminate\Support\Facades\Auth::user()->email }}
+                                    </p>
 
-{{--                                <p class="text-center" style=" font-size: 14px; font-weight: bold; text-align: center;">--}}
-{{--                                    <span style="background: #b2e4ac; border-radius: 45px" class="px-4 py-2 mx-1">{{ \Illuminate\Support\Facades\Auth::user()->type }}</span>--}}
-{{--                                    <span style="background: #b2e4ac; border-radius: 45px" class="px-4 py-2 mx-1">{{ \Illuminate\Support\Facades\Auth::user()->status }}</span>--}}
-{{--                                </p>--}}
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                    <i class="fa fa-close"></i>
-                                </button>
+                                    <p class="text-center" style=" font-size: 14px; font-weight: bold; text-align: center;">
+                                        <span style="background: #b2e4ac; border-radius: 45px" class="px-4 py-2 mx-1">{{ \Illuminate\Support\Facades\Auth::user()->type }}</span>
+                                        <span style="background: #b2e4ac; border-radius: 45px" class="px-4 py-2 mx-1">{{ \Illuminate\Support\Facades\Auth::user()->status }}</span>
+                                    </p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                        <i class="fa fa-close"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                @endif
+                @endauth
 
 
         </div>
-        <main>
+        <main style="min-height: 80vh">
             @yield('content')
         </main>
         <!-- footer section -->

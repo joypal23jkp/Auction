@@ -64,7 +64,7 @@
                             <small>Base Price: ৳ <s>{{ $product->product_base_price }}</s></small><br>
                             <small>
 
-                                {{ isProductValidForBid($product->created_at, $product->product_valid_till) }}
+                                {{ isProductValidForBid(now(), $product->product_valid_till) }}
 
                             </small> Remaining for Bidding
                         </td>

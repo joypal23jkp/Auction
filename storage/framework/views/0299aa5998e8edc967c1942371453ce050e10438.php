@@ -60,7 +60,7 @@
                             <small>Base Price: ৳ <s><?php echo e($product->product_base_price); ?></s></small><br>
                             <small>
 
-                                <?php echo e(isProductValidForBid($product->created_at, $product->product_valid_till)); ?>
+                                <?php echo e(isProductValidForBid(now(), $product->product_valid_till)); ?>
 
 
                             </small> Remaining for Bidding

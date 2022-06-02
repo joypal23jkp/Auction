@@ -17,7 +17,7 @@
                  @endif
                  <div class="detail-box">
                      @if(
-                        !isProductValidForBid($product->created_at, $product->product_valid_till) ||
+                        !isProductValidForBid(now(), $product->product_valid_till) ||
                         $product->product_status == 'Sold'
                      )
                         <p class="text-bold bg-success opacity-75 w-25 text-center p-3 radius">
@@ -25,7 +25,7 @@
                         </p>
                      @else
                          <p class="text-bold bg-success opacity-75 w-25 text-center p-3 radius">
-                             {{ isProductValidForBid($product->created_at, $product->product_valid_till) }} <br>
+                             {{ isProductValidForBid(now(), $product->product_valid_till) }} <br>
                              Remaining To Bit
                          </p>
                      @endif
@@ -51,7 +51,7 @@
                          <input type="number" name="id" hidden value="{{ $product->id }}" >
                          <button type="submit" class="bg-transparent border-0 p-0">
                              @if(
-                                !isProductValidForBid($product->created_at, $product->product_valid_till)
+                                !isProductValidForBid(now(), $product->product_valid_till)
                             )
                              @else
                                  <a class="text-black product_bit_button">

@@ -15,7 +15,7 @@
                  <?php endif; ?>
                  <div class="detail-box">
                      <?php if(
-                        !isProductValidForBid($product->created_at, $product->product_valid_till) ||
+                        !isProductValidForBid(now(), $product->product_valid_till) ||
                         $product->product_status == 'Sold'
                      ): ?>
                         <p class="text-bold bg-success opacity-75 w-25 text-center p-3 radius">
@@ -23,7 +23,7 @@
                         </p>
                      <?php else: ?>
                          <p class="text-bold bg-success opacity-75 w-25 text-center p-3 radius">
-                             <?php echo e(isProductValidForBid($product->created_at, $product->product_valid_till)); ?> <br>
+                             <?php echo e(isProductValidForBid(now(), $product->product_valid_till)); ?> <br>
                              Remaining To Bit
                          </p>
                      <?php endif; ?>
@@ -50,7 +50,7 @@
                          <input type="number" name="id" hidden value="<?php echo e($product->id); ?>" >
                          <button type="submit" class="bg-transparent border-0 p-0">
                              <?php if(
-                                !isProductValidForBid($product->created_at, $product->product_valid_till)
+                                !isProductValidForBid(now(), $product->product_valid_till)
                             ): ?>
                              <?php else: ?>
                                  <a class="text-black product_bit_button">
