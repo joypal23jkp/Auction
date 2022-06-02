@@ -10,6 +10,7 @@ use App\Models\BidProduct;
 use Illuminate\Http\Request;
 use App\Enums\ProductStatusEnum;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Contracts\View\Factory;
@@ -24,14 +25,13 @@ class ProductController extends Controller
      */
     public function index(Request $request) {
         $products = Product::where('product_title', 'Like', '%'.$request->input('search'). '%');
-        if ($request->input('type')){
-            $products = $products->where('product_status', $request->input('type'));
+        if ($request->input('types')){
+            $products = $products->where('product_status', $request->input('types'));
         }
         if ($request->input('category')){
             $products = $products->where('product_category', $request->input('category'));
         }
-        $products = $products->with('images', 'seller', 'buyer')->simplePaginate(5);
-//        return $products;
+        $products = $products->with('images', 'seller', 'buyer')->simplePaginate(12);
 //        return $products;
         return view('products', compact( 'products' ));
     }
@@ -50,14 +50,15 @@ class ProductController extends Controller
      */
     public function create(Request $request): RedirectResponse
     {
-//        dd($request->all());
         $validatedData = $request->validate([
             'product_title' => ['required'],
             'product_description' => ['required', 'max:255'],
             'product_base_price' => ['required', 'numeric'],
             'product_image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
-            "product_category" => ['required']
+            "product_category" => ['required'],
+            "product_valid_till" => ['required']
         ]);
+        $validatedData['product_valid_till'] = Carbon::parseFromLocale($validatedData['product_valid_till']);
         try {
             $file = $validatedData['product_image'];
             $validatedData['product_author'] = Auth::id();
@@ -66,6 +67,7 @@ class ProductController extends Controller
             if (!$request->hasFile('product_image')) return back()->withErrors([ 'product_image' => 'Image not Found.' ]);
 
             $path = explode('/', upload($file))[2];
+//            dd($validatedData)
             $product = Product::create($validatedData);
             $image = $product->images()->create([
                 'image_url' => 'products/'.$path,
@@ -107,15 +109,19 @@ class ProductController extends Controller
             'product_category' => ['max:20'],
             'product_image' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048',
         ]);
+        if ($request->has('product_valid_till')){
+            $validatedData['product_valid_till'] = Carbon::parseFromLocale($request->input('product_valid_till'));
+        }
+
         try {
             $product = Product::find($id);
-            if(interval($product->created_at, date('Y-m-d H:i:s'))->i > 5)
-            {
-
-                return back()->withErrors([
-                    'error' => "Update Time Expired!"
-                ]);
-            }
+//            if(interval($product->created_at, date('Y-m-d H:i:s'))->i > 5)
+//            {
+//
+//                return back()->withErrors([
+//                    'error' => "Update Time Expired!"
+//                ]);
+//            }
             if ($request->hasFile('product_image')) {
                 $file = $validatedData['product_image'];
                 $delete_file = Storage::delete('public/'.$product->images[0]['image_url']);

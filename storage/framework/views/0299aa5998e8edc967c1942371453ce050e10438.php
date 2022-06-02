@@ -38,6 +38,8 @@
                     <th scope="col">Product Details</th>
                     <th scope="col">Seller</th>
                     <th scope="col">Winner</th>
+                    <th scope="col">Top Bid</th>
+                    <th scope="col">Valid Till</th>
                     <th scope="col">Actions</th>
                 </tr>
                 </thead>
@@ -58,10 +60,10 @@
                             <small>Base Price: ৳ <s><?php echo e($product->product_base_price); ?></s></small><br>
                             <small>
 
-                                <?php echo e(getIntervalSessionForProduct(interval($product->created_at,  date('Y-m-d H:i:s')))['H']); ?>H
-                                <?php echo e(getIntervalSessionForProduct(interval($product->created_at,  date('Y-m-d H:i:s')))['M']); ?>M
+                                <?php echo e(isProductValidForBid($product->created_at, $product->product_valid_till)); ?>
 
-                            </small> Remaining for Biting
+
+                            </small> Remaining for Bidding
                         </td>
                         <td>
                             <?php echo e($product->product_description); ?>
@@ -78,6 +80,12 @@
                             <?php else: ?>
                                 N/A
                             <?php endif; ?>
+                        </td>
+                        <td>
+                           <strong>  ৳ <?php echo e($product->bits[0]->bid_price ?? 0); ?></strong>
+                        </td>
+                        <td>
+                            <strong><?php echo e(\Illuminate\Support\Carbon::parseFromLocale($product->product_valid_till)); ?></strong>
                         </td>
                         <td>
                             <?php if($product->product_status != 'Sold'): ?>

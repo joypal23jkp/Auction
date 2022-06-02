@@ -36,6 +36,10 @@
                             <label for="product_base_price" class="form-label">Product Image</label>
                             <input type="file" name="product_image" class="form-control" id="product_image">
                         </div>
+                        <div class="mb-3">
+                            <label for="product_finished" class="form-label">Bedding Finish Time</label>
+                            <input type="datetime-local" name="product_valid_till" class="form-control" id="product_image">
+                        </div>
 
                         <button type="submit" class="btn btn-primary w-100">Submit</button>
 

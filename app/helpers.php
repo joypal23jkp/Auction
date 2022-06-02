@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -26,4 +27,17 @@ function getIntervalSessionForProduct($difference): array
         'H' => (11 - $difference->h),
         'M' => (60 - $difference->i)
     ];
+}
+
+if (!function_exists('isProductValidForBid')){
+    function isProductValidForBid($creationTime, $validTime) {
+        $creationTime = Carbon::parseFromLocale($creationTime);
+        $validTime = Carbon::parseFromLocale($validTime);
+
+        if ($validTime <= $creationTime) {
+            return false;
+        }
+        return $validTime->shortAbsoluteDiffForHumans($creationTime);
+    }
+
 }

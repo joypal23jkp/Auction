@@ -42,7 +42,9 @@
                     <th scope="col">Product Profile</th>
                     <th scope="col">Product Details</th>
                     <th scope="col">Seller</th>
-                    <th scope="col">Buyer</th>
+                    <th scope="col">Winner</th>
+                    <th scope="col">Top Bid</th>
+                    <th scope="col">Valid Till</th>
                     <th scope="col">Actions</th>
                 </tr>
                 </thead>
@@ -62,10 +64,9 @@
                             <small>Base Price: ৳ <s>{{ $product->product_base_price }}</s></small><br>
                             <small>
 
-                                {{ getIntervalSessionForProduct(interval($product->created_at,  date('Y-m-d H:i:s')))['H']  }}H
-                                {{ getIntervalSessionForProduct(interval($product->created_at,  date('Y-m-d H:i:s')))['M']  }}M
+                                {{ isProductValidForBid($product->created_at, $product->product_valid_till) }}
 
-                            </small> Remaining for Biting
+                            </small> Remaining for Bidding
                         </td>
                         <td>
                             {{ $product->product_description }}
@@ -81,6 +82,12 @@
                             @else
                                 N/A
                             @endif
+                        </td>
+                        <td>
+                           <strong>  ৳ {{ $product->bits[0]->bid_price ?? 0 }}</strong>
+                        </td>
+                        <td>
+                            <strong>{{ \Illuminate\Support\Carbon::parseFromLocale($product->product_valid_till) }}</strong>
                         </td>
                         <td>
                             @if($product->product_status != 'Sold')

@@ -24,7 +24,7 @@
                         <label for="floatingSelect">Categories</label>
                         <div class="form-floating">
                             <select class="form-select" name="product_category" id="floatingSelect" aria-label="Floating label select example">
-                            @foreach($categories as $category)
+                                @foreach($categories as $category)
                                     @if($category->id == $product->product_category)
                                         <option selected value="{{ $category->id }}" >{{ $category->title }}</option>
                                     @else
@@ -44,6 +44,11 @@
                                 <img width="50" class="rounded float-end my-2" src="{{ asset('storage/'.$product->images[0]["image_url"]) }}" alt="">
                             </div>
                             <input type="file" name="product_image" class="form-control" id="product_image">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="product_finished" class="form-label">Bedding Finish Time</label>
+                            <input type="datetime-local" name="product_valid_till" class="form-control" value="{{\Illuminate\Support\Carbon::parseFromLocale($product->product_valid_till)->format('Y-m-d'). "T". \Illuminate\Support\Carbon::parseFromLocale($product->product_valid_till)->format('H:i') }}" />
                         </div>
 
                         <button type="submit" class="btn btn-primary w-100">Update</button>

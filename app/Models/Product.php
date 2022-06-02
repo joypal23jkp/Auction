@@ -20,7 +20,8 @@ class Product extends Model
         'product_sold_price',
         'product_author',
         'product_buyer',
-        'product_category'
+        'product_category',
+        'product_valid_till'
     ];
 
     /**

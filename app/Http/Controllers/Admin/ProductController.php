@@ -23,14 +23,15 @@ class ProductController extends Controller
      */
     public function index(Request $request) {
         $products = Product::where('product_title', 'Like', '%'.$request->input('search'). '%');
-        if ($request->input('type')){
-            $products = $products->where('product_status', $request->input('type'));
+        if ($request->input('types')){
+            $products = $products->where('product_status', $request->input('types'));
         }
         if ($request->input('category')){
             $products = $products->where('product_category', $request->input('category'));
         }
-        $products = $products->with('images', 'seller', 'buyer')->simplePaginate(12);
-//        return $products;
+        $products = $products->with(['images', 'seller', 'buyer', 'bits' => function($query) {
+            $query->orderByDesc('id')->first();
+        }])->simplePaginate(12);
         return view('admin.products', ['products' => $products]);
     }
 

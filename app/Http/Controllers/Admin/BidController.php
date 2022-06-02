@@ -29,6 +29,7 @@ class BidController extends Controller
             ->where('users.name', 'Like', '%'.$request->input('user_search'). '%')
             ->where('products.product_title', 'Like', '%'.$request->input('product_search'). '%')
 //            ->join('categories', 'categories.id', 'products.product_category')
+            ->orderByDesc('id')
             ->simplePaginate(10);
         return view('admin.bits', compact('bits'));
     }
