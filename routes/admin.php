@@ -10,8 +10,7 @@ Route::middleware(['auth', 'admin.auth'])->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('admin.home');
     Route::get('/products', [ProductController::class, 'index'])->name('admin.products');
     Route::get('/users', [UserController::class, 'index'])->name('admin.user');
-    Route::get('/bids', [BidController::class, 'index'])->name('admin.bid');
+    Route::get('/bits', [BidController::class, 'index'])->name('admin.bits');
     Route::get('/product/updateStatus/{id}', [ProductController::class, 'updateStatus'])->name('admin.product.update');
     Route::get('/user/updateStatus/{id}', [UserController::class, 'updateStatus'])->name('admin.user.update');
-
 });

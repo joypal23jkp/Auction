@@ -37,7 +37,7 @@
                     <th scope="col">Product Profile</th>
                     <th scope="col">Product Details</th>
                     <th scope="col">Seller</th>
-                    <th scope="col">Buyer</th>
+                    <th scope="col">Winner</th>
                     <th scope="col">Actions</th>
                 </tr>
                 </thead>

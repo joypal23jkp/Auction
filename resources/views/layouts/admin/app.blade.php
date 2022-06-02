@@ -53,9 +53,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('admin.user') }}">Users</a>
                             </li>
-{{--                            <li class="nav-item">--}}
-{{--                                <a class="nav-link" href="{{ route('bits') }}">Contact Us</a>--}}
-{{--                            </li>--}}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.bits') }}">Bits</a>
+                            </li>
                         </ul>
                         <div class="user_option-box">
 
