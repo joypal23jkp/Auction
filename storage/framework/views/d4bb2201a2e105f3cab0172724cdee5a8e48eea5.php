@@ -55,6 +55,10 @@
                         </div>
                     <?php endif; ?>
             </div>
+            <div style="height: 50px" class="mt-5 d-flex justify-content-center">
+                <?php echo e($products->links()); ?>
+
+            </div>
         </div>
     </section>
 

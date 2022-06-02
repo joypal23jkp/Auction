@@ -49,6 +49,9 @@
                         </div>
                     @endif
             </div>
+            <div style="height: 50px" class="mt-5 d-flex justify-content-center">
+                {{ $products->links() }}
+            </div>
         </div>
     </section>
 

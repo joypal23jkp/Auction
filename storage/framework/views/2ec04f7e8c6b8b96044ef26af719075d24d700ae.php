@@ -75,28 +75,7 @@
                          <?php endif; ?>
                  </div>
              </div>
-
          </div>
-         <hr>
-         <div class="comment__section my-4 w-50 mx-auto">
-             <form method="POST" action="<?php echo e(route('product-comment', ['id' => $product->id])); ?>">
-                 <?php echo csrf_field(); ?>
-                 <div class="form-floating">
-                     <textarea name="details" class="form-control bg-transparent text-white" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
-                     <label for="floatingTextarea">Comments</label>
-                 </div>
-                 <button type="submit" class="btn btn-primary w-25 my-4">Submit</button>
-             </form>
-         </div>
-         <hr>
-         <?php $__currentLoopData = $product->comments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key =>$comment): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-            <div class="comment__view my-4 w-50 mx-auto">
-                <small><?php echo e($key+1 .'. '. $comment->comment_text); ?></small>
-                <hr>
-            </div>
-
-         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
      </div>
  </section>
 

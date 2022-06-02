@@ -19,8 +19,6 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-    <!-- bootstrap core css -->
-{{--    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />--}}
     <!--owl slider stylesheet -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
 
@@ -84,7 +82,13 @@
 
                                 <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="navbarDropdown" style="font-size: 14px">
                                     <li>
-                                        <a class="dropdown-item" href="{{ route('user-product') }}">
+                                        <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="font-size: 12px;">
+                                            <i class="fa fa-user-circle"></i>
+                                            Profile
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('user-product') }}" style="font-size: 12px;">
                                             <i class="fa fa-product-hunt"></i>
                                             Products
                                         </a>
@@ -92,7 +96,7 @@
                                     <li>
                                         <a class="dropdown-item nav-link" href="{{ route('logout') }}"
                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                                     document.getElementById('logout-form').submit();" style="font-size: 12px;">
                                             <i class="fa fa-sign-out"></i>
                                             {{ __('Logout') }}
                                         </a>
@@ -123,6 +127,34 @@
                     {{ session()->get('success') }}
                 </div>
             @endif
+
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <p class="text-center" style=" font-size: 14px; font-weight: bold; text-align: center;">
+                                    {{ \Illuminate\Support\Facades\Auth::user()->name }}
+                                </p>
+
+                                <p class="text-center" style=" font-size: 14px; font-weight: bold; text-align: center;">
+                                    {{ \Illuminate\Support\Facades\Auth::user()->email }}
+                                </p>
+
+                                <p class="text-center" style=" font-size: 14px; font-weight: bold; text-align: center;">
+                                    <span style="background: #b2e4ac; border-radius: 45px" class="px-4 py-2 mx-1">{{ \Illuminate\Support\Facades\Auth::user()->type }}</span>
+                                    <span style="background: #b2e4ac; border-radius: 45px" class="px-4 py-2 mx-1">{{ \Illuminate\Support\Facades\Auth::user()->status }}</span>
+                                </p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                    <i class="fa fa-close"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
 
         </div>
         <main>

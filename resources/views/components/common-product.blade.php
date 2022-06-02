@@ -46,7 +46,7 @@
                 <div class="w-100 p-2 my-2" style="border-radius: 10px; background: #dbd2db">
                     <p class="mb-0">Winner: {{ $product->buyer->name }}</p>
                     <span>Email : {{ $product->buyer->email ?? 'N/A' }}</span>
-                    <p>Price : {{ $product->product_sold_price ?? 'N/A' }}</p>
+                    <p>Price : ৳ {{ $product->product_sold_price ?? 'N/A' }}</p>
                 </div>
             @endif
 

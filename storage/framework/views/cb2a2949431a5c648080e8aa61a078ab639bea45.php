@@ -17,7 +17,7 @@
                         <label for="floatingSelect">Categories</label>
                         <div class="form-floating">
                             <select class="form-select" name="product_category" id="floatingSelect" aria-label="Floating label select example">
-                                <option selected>Select Categories</option>
+                                <option selected value="">Select Categories</option>
                                 <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <option value="<?php echo e($category->id); ?>"><?php echo e($category->title); ?></option>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

@@ -29,7 +29,7 @@ class ProductController extends Controller
         if ($request->input('category')){
             $products = $products->where('product_category', $request->input('category'));
         }
-        $products = $products->with('images', 'seller', 'buyer')->simplePaginate(4);
+        $products = $products->with('images', 'seller', 'buyer')->simplePaginate(12);
 //        return $products;
         return view('admin.products', ['products' => $products]);
     }

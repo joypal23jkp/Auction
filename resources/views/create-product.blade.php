@@ -19,7 +19,7 @@
                         <label for="floatingSelect">Categories</label>
                         <div class="form-floating">
                             <select class="form-select" name="product_category" id="floatingSelect" aria-label="Floating label select example">
-                                <option selected>Select Categories</option>
+                                <option selected value="">Select Categories</option>
                                 @foreach($categories as $category)
                                     <option value="{{ $category->id }}">{{ $category->title }}</option>
                                 @endforeach

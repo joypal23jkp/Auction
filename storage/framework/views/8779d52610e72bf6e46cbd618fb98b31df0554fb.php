@@ -16,7 +16,7 @@
 
                         <div class="mb-3">
                             <label for="name" class="form-label">Full Name</label>
-                            <input type="text" name="full" class="form-control" id="name" aria-describedby="emailHelp">
+                            <input type="text" name="name" class="form-control" id="name" aria-describedby="emailHelp">
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">Email address</label>

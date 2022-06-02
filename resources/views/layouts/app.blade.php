@@ -86,8 +86,16 @@
                                 </a>
 
                                 <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="navbarDropdown" style="font-size: 14px">
+
                                     <li>
-                                        <a class="dropdown-item" href="{{ route('user-product') }}">
+                                        <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="font-size: 12px;">
+                                            <i class="fa fa-user-circle"></i>
+                                            Profile
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a class="dropdown-item" style="font-size: 12px;" href="{{ route('user-product') }}">
                                             <i class="fa fa-product-hunt"></i>
                                             Products
                                         </a>
@@ -96,12 +104,13 @@
                                         @php
                                             $user_notification = DB::table('notifications')->where('user_id', \Illuminate\Support\Facades\Auth::id())->where('checked', false)->orderByDesc('id')->count();
                                         @endphp
-                                        <a class="dropdown-item" href="{{ route('notification') }}">
-                                            Notifications <span class="badge text-bg-secondary">{{ $user_notification }}</span>
+                                        <a class="dropdown-item" style="font-size: 12px;" href="{{ route('notification') }}">
+                                            <i class="fa fa-bell" aria-hidden="true"></i>
+                                            Notifications <span class="badge text-bg-secondary bg-primary">{{ $user_notification }}</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item nav-link" href="{{ route('logout') }}"
+                                        <a class="dropdown-item nav-link" style="font-size: 12px;" href="{{ route('logout') }}"
                                            onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                             <i class="fa fa-sign-out"></i>
@@ -134,6 +143,32 @@
                     {{ session()->get('success') }}
                 </div>
             @endif
+
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <p class="text-center" style=" font-size: 14px; font-weight: bold; text-align: center;">
+                                    {{ \Illuminate\Support\Facades\Auth::user()->name }}
+                                </p>
+
+                                <p class="text-center" style=" font-size: 14px; font-weight: bold; text-align: center;">
+                                    {{ \Illuminate\Support\Facades\Auth::user()->email }}
+                                </p>
+
+                                <p class="text-center" style=" font-size: 14px; font-weight: bold; text-align: center;">
+                                    <span style="background: #b2e4ac; border-radius: 45px" class="px-4 py-2 mx-1">{{ \Illuminate\Support\Facades\Auth::user()->type }}</span>
+                                    <span style="background: #b2e4ac; border-radius: 45px" class="px-4 py-2 mx-1">{{ \Illuminate\Support\Facades\Auth::user()->status }}</span>
+                                </p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                    <i class="fa fa-close"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
         </div>
         <main>

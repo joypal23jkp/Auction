@@ -46,7 +46,7 @@
                 <div class="w-100 p-2 my-2" style="border-radius: 10px; background: #dbd2db">
                     <p class="mb-0">Winner: <?php echo e($product->buyer->name); ?></p>
                     <span>Email : <?php echo e($product->buyer->email ?? 'N/A'); ?></span>
-                    <p>Price : <?php echo e($product->product_sold_price ?? 'N/A'); ?></p>
+                    <p>Price : ৳ <?php echo e($product->product_sold_price ?? 'N/A'); ?></p>
                 </div>
             <?php endif; ?>
 

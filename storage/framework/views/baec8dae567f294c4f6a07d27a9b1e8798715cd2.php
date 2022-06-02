@@ -91,7 +91,7 @@
 
                                 <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="navbarDropdown" style="font-size: 14px">
                                     <li>
-                                        <a class="dropdown-item" href="<?php echo e(route('user-product')); ?>">
+                                        <a class="dropdown-item" style="font-size: 12px;" href="<?php echo e(route('user-product')); ?>">
                                             <i class="fa fa-product-hunt"></i>
                                             Products
                                         </a>
@@ -100,12 +100,13 @@
                                         <?php
                                             $user_notification = DB::table('notifications')->where('user_id', \Illuminate\Support\Facades\Auth::id())->where('checked', false)->orderByDesc('id')->count();
                                         ?>
-                                        <a class="dropdown-item" href="<?php echo e(route('notification')); ?>">
-                                            Notifications <span class="badge text-bg-secondary"><?php echo e($user_notification); ?></span>
+                                        <a class="dropdown-item" style="font-size: 12px;" href="<?php echo e(route('notification')); ?>">
+                                            <i class="fa fa-bell" aria-hidden="true"></i>
+                                            Notifications <span class="badge text-bg-secondary bg-primary"><?php echo e($user_notification); ?></span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item nav-link" href="<?php echo e(route('logout')); ?>"
+                                        <a class="dropdown-item nav-link" style="font-size: 12px;" href="<?php echo e(route('logout')); ?>"
                                            onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                             <i class="fa fa-sign-out"></i>

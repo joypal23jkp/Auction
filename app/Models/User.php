@@ -46,6 +46,16 @@ class User extends Authenticatable
     {
         $this->attributes['password'] = Hash::make($value);
     }
+    /**
+     * Set the user's first name.
+     *
+     * @param string $value
+     * @return void
+     */
+    public function setTypeAttribute(string $value)
+    {
+        $this->attributes['type'] = 'User';
+    }
 
 
     /**

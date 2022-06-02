@@ -30,7 +30,8 @@ class ProductController extends Controller
         if ($request->input('category')){
             $products = $products->where('product_category', $request->input('category'));
         }
-        $products = $products->with('images', 'seller', 'buyer')->paginate(12);
+        $products = $products->with('images', 'seller', 'buyer')->simplePaginate(5);
+//        return $products;
 //        return $products;
         return view('products', compact( 'products' ));
     }
@@ -49,6 +50,7 @@ class ProductController extends Controller
      */
     public function create(Request $request): RedirectResponse
     {
+//        dd($request->all());
         $validatedData = $request->validate([
             'product_title' => ['required'],
             'product_description' => ['required', 'max:255'],

@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->enum('type', UserTypeEnum::toValues());
+            $table->enum('type', UserTypeEnum::toValues())->default(UserTypeEnum::User()->value);
             $table->enum('status', UserStatusEnum::toValues())->default(UserStatusEnum::Inactive());
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

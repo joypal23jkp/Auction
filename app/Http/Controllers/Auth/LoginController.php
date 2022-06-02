@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use http\Client\Curl\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -47,6 +48,10 @@ class LoginController extends Controller
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
+
+        $user = \App\Models\User::where('email', $credentials['email'])->first();
+//        dd(Hash::check('12345678', $user->password));
+
         if (Auth::attempt($credentials)){
             $request->session()->regenerate();
             return redirect()->intended(RouteServiceProvider::HOME);

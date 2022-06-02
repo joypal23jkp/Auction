@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Enums\UserTypeEnum;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,11 +18,9 @@ class AuthenticateAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-//        if (! $request->expectsJson() && Auth::user()->type != "Admin"){
-//            Auth::logout();
-//            return redirect('/login');
-//        }
-
+        if(Auth::user()->type != UserTypeEnum::Admin()->value) {
+           return redirect('/');
+        }
         return $next($request);
     }
 }
